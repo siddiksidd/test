@@ -1,0 +1,51 @@
+<h2>employee2 works!</h2><hr>
+
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ <div class="container">
+<table border="2" class="table" >
+    <tr appAppcolor>
+        <td colspan="2">
+            <input type="text" class="form-control" placeholder="Search" [(ngModel)]="filteredString"/>
+        </td>
+        <td colspan="1">
+            <select  class="form-control" [(ngModel)]='sortby'> 
+                <option [value]='1'>
+                    A-Z
+                </option>
+                <option [value]='2'>
+                    low-high
+                </option>
+                
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th class="bg-dark text-light" >
+            Employee Id
+        </th>
+        <th class="bg-dark text-light">
+            Employee Name
+        </th >
+        <th class="bg-dark text-light">
+            Employee Salary
+        </th>
+        
+    </tr>
+    <tr appAppcolor *ngFor="let employee of employees | searchpipe:filteredString | sortpipe:sortby">
+        <td  appAppcolor class="bg-dark text-light">
+               {{employee.employeeId}}
+        </td>
+        <td  class="bg-dark text-light">
+            {{employee.employeeName | uppercase}}
+     </td>
+     <td  class="bg-dark text-light">
+        {{employee.employeeSalary | currency:'INR'}}
+ </td>
+ 
+</table>
+</div> 
+{{errMsg | json}}
